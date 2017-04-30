@@ -10,6 +10,8 @@ app.get('/', function (req, res) {
     res.sendFile(__dirname + '/index.html');
 });
 
+app.set('port', (process.env.PORT || 3000));
+
 io.on('connection', function (socket) {
     var socketId = socket.id;
 
@@ -41,6 +43,6 @@ io.on('connection', function (socket) {
 });
 
 
-http.listen(3000, function () {
-    console.log('App is listening on port ', 3000);
+http.listen(app.get('port'), function () {
+    console.log('App is listening on port ', app.get('port'));
 });
